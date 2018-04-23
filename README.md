@@ -7,7 +7,7 @@ If the composer file and the vendor folder with the dependencies are not present
     $ cd ambiento-api
     $ composer require slim/slim "^3.0"
 
-With the composer.json and/or composer.lock file, just execute:
+If not, just execute:
 
     $ cd ambiento-api
     $ composer install
