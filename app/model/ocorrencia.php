@@ -17,7 +17,7 @@ class Ocorrencia{
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return json_encode($data);
+        return json_encode($data[0]);
     }
 
     public static function createOcorrenciaObject($ocorrencia){
