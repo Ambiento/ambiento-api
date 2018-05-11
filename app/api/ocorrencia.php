@@ -1,34 +1,38 @@
 <?php
-$app->get('/api/ocorrencia', function () {
+
+require_once ('app/model/ocorrenciaModel.php');
+
+$app->get('/api/occurrence', function () {
     header('Content-Type: application/json; charset=utf-8');
-    $data = Ocorrencia::getOcorrenciaObjects();
+    $data = Occurrence::getOccurrenceObjects();
     echo $data;
 });
-$app->get('/api/ocorrencia/{id}', function ($request) {
+
+$app->get('/api/occurrence/{id}', function ($request) {
     $id = $request->getAttribute('id');
     header('Content-Type: application/json; charset=utf-8');
-    $data = Ocorrencia::getOcorrenciaObject($id);
+    $data = Occurrence::getOccurrenceObject($id);
     echo $data;
 });
 
-$app->post('/api/ocorrencia', function ($request) {
+$app->post('/api/occurrence', function ($request) {
     $ocorrencia = $request->getParsedBody();
     header('Content-Type: application/json; charset=utf-8');
-    $data = Ocorrencia::createOcorrenciaObject($ocorrencia);
+    $data = Occurrence::createOccurrenceObject($ocorrencia);
     echo $data;
 });
 
-$app->put('/api/ocorrencia/{id}', function ($request) {
+$app->put('/api/occurrence/{id}', function ($request) {
     $id = $request->getAttribute('id');
     $ocorrencia = $request->getParsedBody();
     $ocorrencia['id'] = $id;
     header('Content-Type: application/json; charset=utf-8');
-    $data = Ocorrencia::updateOcorrenciaObject($ocorrencia);
+    $data = Occurrence::updateOccurrenceObject($ocorrencia);
     echo $data;
 });
 
-$app->delete('/api/ocorrencia/{id}', function ($request) {
+$app->delete('/api/occurrence/{id}', function ($request) {
     $id = $request->getAttribute('id');
     header('Content-Type: application/json; charset=utf-8');
-    Ocorrencia::deleteOcorrenciaObject($id);
+    Occurrence::deleteOccurrenceObject($id);
 });

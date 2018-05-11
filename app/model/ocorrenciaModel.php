@@ -1,18 +1,18 @@
 <?php
 
-class Ocorrencia{
-    public static function getOcorrenciaObjects(){
+class Occurrence{
+    public static function getOccurrenceObjects(){
         $pdo = Database::connect();
-        $sql = "SELECT * FROM Ocorrencia";
+        $sql = "SELECT * FROM Occurrence";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return json_encode($data);
     }
 
-    public static function getOcorrenciaObject($id){
+    public static function getOccurrenceObject($id){
         $pdo = Database::connect();
-        $sql = "SELECT * FROM Ocorrencia WHERE idOcorrencia = :id";
+        $sql = "SELECT * FROM Occurrence WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -20,26 +20,26 @@ class Ocorrencia{
         return json_encode($data[0]);
     }
 
-    public static function createOcorrenciaObject($ocorrencia){
+    public static function createOccurrenceObject($ocorrencia){
         $pdo = Database::connect();
-        $sql = "INSERT INTO Ocorrencia (nome_usuario, cidade, estado, referencia_localizacao, descricao, idImg, latitude, longitude) VALUES (:nome_usuario, :cidade, :estado, :referencia_localizacao, :descricao, :idImg, :latitude, :longitude)";
+        $sql = "INSERT INTO Occurrence (user, city, state, reference, description, imgurl, latitude, longitude) VALUES (:user, :city, :state, :reference, :description, :imgUrl, :latitude, :longitude)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($ocorrencia);
         $ocorrencia['id'] = $pdo->lastInsertId();
         return json_encode($ocorrencia);
     }
 
-    public static function updateOcorrenciaObject($ocorrencia){
+    public static function updateOccurrenceObject($ocorrencia){
         $pdo = Database::connect();
-        $sql = "UPDATE Ocorrencia SET name = :name, writer = :writer, url = :url WHERE id = :id";
+        $sql = "UPDATE Occurrence SET name = :name, writer = :writer, url = :url WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($ocorrencia);
         return json_encode($ocorrencia);
     }
 
-    public static function deleteOcorrenciaObject($id){
+    public static function deleteOccurrenceObject($id){
         $pdo = Database::connect();
-        $sql = "DELETE FROM Ocorrencia WHERE id = :id";
+        $sql = "DELETE FROM Occurrence WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
