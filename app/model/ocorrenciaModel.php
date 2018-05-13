@@ -22,7 +22,7 @@ class Occurrence{
 
     public static function createOccurrenceObject($ocorrencia){
         $pdo = Database::connect();
-        $sql = "INSERT INTO Occurrence (user, city, state, reference, description, imgurl, latitude, longitude) VALUES (:user, :city, :state, :reference, :description, :imgUrl, :latitude, :longitude)";
+        $sql = "INSERT INTO Occurrence (user, city, state, reference, description, imgurl, latitude, longitude) VALUES (:user, :city, :state, :reference, :description, :imgurl, :latitude, :longitude)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute($ocorrencia);
         $ocorrencia['id'] = $pdo->lastInsertId();
